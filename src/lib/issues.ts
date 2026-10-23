@@ -1,11 +1,27 @@
 import { getCollection, type CollectionEntry } from 'astro:content';
 
-export type Issue = CollectionEntry<'issues'>;
+export type Issue = CollectionEntry<'issues'> & {
+  /** Two-digit issue number, e.g. "08" */
+  number: string;
+  /** Minutes to read */
+  readTime: number;
+};
 
-/** All issues, newest first. */
+const WORDS_PER_MINUTE = 230;
+
+/** All issues, newest first, with number and read time filled in. */
 export async function getIssues(): Promise<Issue[]> {
-  const issues = await getCollection('issues');
-  return issues.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+  const entries = await getCollection('issues');
+  const oldestFirst = entries.sort((a, b) => a.data.date.getTime() - b.data.date.getTime() || a.id.localeCompare(b.id));
+  const issues = oldestFirst.map((entry, i) => {
+    const words = (entry.body ?? '').split(/\s+/).filter(Boolean).length;
+    return {
+      ...entry,
+      number: entry.data.number ?? String(i + 1).padStart(2, '0'),
+      readTime: entry.data.readTime ?? Math.max(1, Math.round(words / WORDS_PER_MINUTE)),
+    };
+  });
+  return issues.reverse();
 }
 
 export const issueUrl = (issue: Issue) => `/issues/${issue.id}/`;

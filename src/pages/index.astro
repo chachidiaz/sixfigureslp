@@ -12,9 +12,10 @@ const groups = years.map((year) => ({
   year,
   issues: issues.filter((i) => i.data.date.getUTCFullYear() === year),
 }));
+const hasIssues = issues.length > 0;
 const visibleCount = (list: typeof issues) => list.filter((i) => i !== lead).length;
 
-const searchText = (i: (typeof issues)[number]) => `${i.data.number} ${i.data.title} ${i.data.summary}`.toLowerCase();
+const searchText = (i: (typeof issues)[number]) => `${i.number} ${i.data.title} ${i.data.summary}`.toLowerCase();
 ---
 
 <Base
@@ -23,8 +24,11 @@ const searchText = (i: (typeof issues)[number]) => `${i.data.number} ${i.data.ti
 >
   <header class="site-header">
     <div class="site-header__inner">
-      <span class="site-header__start wide-only">{issues.length} issues and counting</span>
-      <button type="button" class="icon-button narrow-only" aria-label="Search issues" aria-expanded="false" aria-controls="search-panel" data-search-toggle>
+      <span class="site-header__start wide-only">
+        {hasIssues ? `${countLabel(issues.length)} and counting` : 'First issue coming soon'}
+      </span>
+      {!hasIssues && <span class="narrow-only" aria-hidden="true"></span>}
+      <button hidden={!hasIssues} type="button" class="icon-button narrow-only" aria-label="Search issues" aria-expanded="false" aria-controls="search-panel" data-search-toggle>
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-3.6-3.6"></path></svg>
       </button>
       <a href="/" class="wordmark" aria-current="page">The Insider</a>
@@ -32,7 +36,7 @@ const searchText = (i: (typeof issues)[number]) => `${i.data.number} ${i.data.ti
     </div>
   </header>
 
-  <div id="search-panel" class="search-panel narrow-only" role="search">
+  <div id="search-panel" class="search-panel narrow-only" role="search" hidden={!hasIssues}>
     <div class="search-panel__clip">
       <div class="search-panel__inner">
         <label for="m-issue-search">Search the archive</label>
@@ -91,7 +95,7 @@ const searchText = (i: (typeof issues)[number]) => `${i.data.number} ${i.data.ti
           Quick marketing lessons for SLPs, from an SLP and a digital marketer who built a business together. Read it fast, use it today.
         </p>
       </div>
-      <div class="search wide-only" role="search">
+      <div class="search wide-only" role="search" hidden={!hasIssues}>
         <label for="issue-search">Search the archive</label>
         <input id="issue-search" class="search-input" type="search" placeholder="Topic, title or issue no." autocomplete="off" data-search-input />
         <p class="label" aria-live="polite" data-search-count>Newest first</p>
@@ -103,7 +107,7 @@ const searchText = (i: (typeof issues)[number]) => `${i.data.number} ${i.data.ti
         <section class="lead" aria-labelledby="lead-title" data-lead>
           <div class="lead__meta">
             <span class="lead__eyebrow wide-only">Latest issue</span>
-            <span class="numeral">{lead.data.number}</span>
+            <span class="numeral">{lead.number}</span>
             <span class="mono narrow-only" style="color: var(--accent-text)">Latest issue</span>
             <time class="label wide-only" datetime={isoDate(lead.data.date)}>{longDate(lead.data.date)}</time>
           </div>
@@ -113,7 +117,7 @@ const searchText = (i: (typeof issues)[number]) => `${i.data.number} ${i.data.ti
             </h2>
             <p class="lead__summary">{lead.data.summary}</p>
             <p class="mono narrow-only" style="margin: 0; color: var(--muted)">
-              {shortDate(lead.data.date)} · {readLabel(lead.data.readTime)}
+              {shortDate(lead.data.date)} · {readLabel(lead.readTime)}
             </p>
             <div class="lead__actions">
               <a href={issueUrl(lead)} class="btn-primary">
@@ -122,7 +126,7 @@ const searchText = (i: (typeof issues)[number]) => `${i.data.number} ${i.data.ti
                   <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"></path></svg>
                 </span>
               </a>
-              <span class="label wide-only">{readLabel(lead.data.readTime)}</span>
+              <span class="label wide-only">{readLabel(lead.readTime)}</span>
             </div>
           </div>
         </section>
@@ -142,28 +146,36 @@ const searchText = (i: (typeof issues)[number]) => `${i.data.number} ${i.data.ti
             <ol>
               {group.issues.map((issue) => (
                 <li class="issue-row" data-issue data-search={searchText(issue)} data-is-lead={issue === lead ? '' : undefined} hidden={issue === lead}>
-                  <span class="numeral" aria-hidden="true">{issue.data.number}</span>
+                  <span class="numeral" aria-hidden="true">{issue.number}</span>
                   <div class="issue-row__body">
                     <h3 class="issue-row__title">
                       <a href={issueUrl(issue)}>
-                        <span class="visually-hidden">Issue {issue.data.number}: </span>
+                        <span class="visually-hidden">Issue {issue.number}: </span>
                         {issue.data.title}
                       </a>
                     </h3>
                     <p class="issue-row__summary">{issue.data.summary}</p>
                     <p class="issue-row__mono mono narrow-only">
-                      {shortDate(issue.data.date)} · {readLabel(issue.data.readTime)}
+                      {shortDate(issue.data.date)} · {readLabel(issue.readTime)}
                     </p>
                   </div>
                   <div class="issue-row__meta label wide-only">
                     <time datetime={isoDate(issue.data.date)}>{longDate(issue.data.date)}</time>
-                    <span>{readLabel(issue.data.readTime)}</span>
+                    <span>{readLabel(issue.readTime)}</span>
                   </div>
                 </li>
               ))}
             </ol>
           </div>
         ))
+      }
+      {
+        !hasIssues && (
+          <div class="empty">
+            <p>The first issue is on its way.</p>
+            <p class="empty__note">Every issue of The Six Figure Insider will be saved here as it goes out.</p>
+          </div>
+        )
       }
       <div class="empty" hidden data-empty>
         <p>No issues match that search.</p>

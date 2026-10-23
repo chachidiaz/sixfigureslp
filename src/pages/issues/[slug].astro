@@ -26,7 +26,8 @@ interface Props {
 
 const { issue, related, relatedLabel } = Astro.props;
 const { Content } = await render(issue);
-const { number, title, summary, date, readTime, author } = issue.data;
+const { title, summary, date, author } = issue.data;
+const { number, readTime } = issue;
 ---
 
 <Base title={`Issue ${number}: ${title} — The Six Figure Insider`} description={summary}>
@@ -62,7 +63,7 @@ const { number, title, summary, date, readTime, author } = issue.data;
         {
           related && (
             <a href={issueUrl(related)} class="next-card">
-              <span class="numeral" aria-hidden="true">{related.data.number}</span>
+              <span class="numeral" aria-hidden="true">{related.number}</span>
               <span class="next-card__text">
                 <span class="next-card__label">{relatedLabel}</span>
                 <span class="next-card__title">{related.data.title}</span>
