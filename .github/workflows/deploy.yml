@@ -13,6 +13,14 @@ concurrency:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    env:
+      SSH_HOST: ${{ secrets.SSH_HOST }}
+      SSH_USERNAME: ${{ secrets.SSH_USERNAME }}
+      SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+      # Hostinger uses port 65002 for SSH.
+      SSH_PORT: ${{ vars.SSH_PORT || '65002' }}
+      # Folder for thesixfigureslp.com/insider, relative to the Hostinger home folder.
+      TARGET_DIR: ${{ vars.SSH_TARGET_DIR || 'domains/thesixfigureslp.com/public_html/insider' }}
     steps:
       - uses: actions/checkout@v4
 
@@ -25,27 +33,30 @@ jobs:
 
       - run: npm run build
 
-      - name: Check Hostinger FTP details are set
-        id: ftp
-        env:
-          FTP_SERVER: ${{ secrets.FTP_SERVER }}
-          FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
-          FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+      - name: Check Hostinger SSH details are set
+        id: ssh
         run: |
-          if [ -n "$FTP_SERVER" ] && [ -n "$FTP_USERNAME" ] && [ -n "$FTP_PASSWORD" ]; then
+          if [ -n "$SSH_HOST" ] && [ -n "$SSH_USERNAME" ] && [ -n "$SSH_PRIVATE_KEY" ]; then
             echo "ready=true" >> "$GITHUB_OUTPUT"
           else
-            echo "::warning::The site built, but it was not uploaded: add FTP_SERVER, FTP_USERNAME and FTP_PASSWORD under Settings > Secrets and variables > Actions."
+            echo "::warning::The site built, but it was not uploaded: add SSH_HOST, SSH_USERNAME and SSH_PRIVATE_KEY under Settings > Secrets and variables > Actions."
           fi
 
       - name: Upload to Hostinger
-        if: steps.ftp.outputs.ready == 'true'
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
-        with:
-          server: ${{ secrets.FTP_SERVER }}
-          username: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: ./dist/
-          # Folder on Hostinger the site is served from. Override with the
-          # FTP_SERVER_DIR repository variable, e.g. for a subdomain's folder.
-          server-dir: ${{ vars.FTP_SERVER_DIR || 'public_html/' }}
+        if: steps.ssh.outputs.ready == 'true'
+        run: |
+          # The upload deletes files in the target folder that aren't in the build,
+          # so refuse anything that could be the main website's folder.
+          case "${TARGET_DIR%/}" in
+            ""|*public_html|/*) echo "::error::SSH_TARGET_DIR must be a subfolder of public_html, e.g. domains/thesixfigureslp.com/public_html/insider"; exit 1 ;;
+          esac
+
+          mkdir -p ~/.ssh
+          printf '%s\n' "$SSH_PRIVATE_KEY" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          ssh-keyscan -p "$SSH_PORT" "$SSH_HOST" >> ~/.ssh/known_hosts 2>/dev/null
+          SSH="ssh -i $HOME/.ssh/deploy_key -p $SSH_PORT"
+
+          $SSH "$SSH_USERNAME@$SSH_HOST" "mkdir -p '${TARGET_DIR%/}'"
+          rsync -rlz --delete --exclude='.well-known' -e "$SSH" dist/ "$SSH_USERNAME@$SSH_HOST:${TARGET_DIR%/}/"
+          echo "Uploaded to https://thesixfigureslp.com/insider/"

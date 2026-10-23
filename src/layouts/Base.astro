@@ -1,5 +1,7 @@
 ---
 import '../styles/global.css';
+import displayFont from '../fonts/BringboldNineties-Regular.woff2?url';
+import { homeUrl } from '../lib/issues';
 
 interface Props {
   title: string;
@@ -17,7 +19,7 @@ const { title, description } = Astro.props;
     <title>{title}</title>
     <meta name="description" content={description} />
     <meta name="color-scheme" content="light dark" />
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href={`${homeUrl}favicon.svg`} type="image/svg+xml" />
     <script is:inline>
       // Apply the saved theme before first paint so there is no flash.
       (function () {
@@ -29,7 +31,7 @@ const { title, description } = Astro.props;
         document.documentElement.dataset.theme = t;
       })();
     </script>
-    <link rel="preload" href="/fonts/BringboldNineties-Regular.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href={displayFont} as="font" type="font/woff2" crossorigin />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link

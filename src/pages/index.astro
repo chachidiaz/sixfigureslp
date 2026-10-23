@@ -1,7 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
 import ThemeSwitch from '../components/ThemeSwitch.astro';
-import { getIssues, issueUrl, longDate, shortDate, isoDate, readLabel, countLabel } from '../lib/issues';
+import { getIssues, homeUrl, issueUrl, longDate, shortDate, isoDate, readLabel, countLabel } from '../lib/issues';
 
 const issues = await getIssues();
 const [lead] = issues;
@@ -31,7 +31,7 @@ const searchText = (i: (typeof issues)[number]) => `${i.number} ${i.data.title} 
       <button hidden={!hasIssues} type="button" class="icon-button narrow-only" aria-label="Search issues" aria-expanded="false" aria-controls="search-panel" data-search-toggle>
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-3.6-3.6"></path></svg>
       </button>
-      <a href="/" class="wordmark" aria-current="page">The Insider</a>
+      <a href={homeUrl} class="wordmark" aria-current="page">The Insider</a>
       <ThemeSwitch />
     </div>
   </header>

@@ -1,4 +1,4 @@
-ErrorDocument 404 /404.html
+ErrorDocument 404 /insider/404.html
 
 # Built CSS/JS file names change on every edit, so they can be cached for a long time.
 <IfModule mod_headers.c>

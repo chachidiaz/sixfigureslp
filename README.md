@@ -2,8 +2,10 @@
 
 A small static site (built with [Astro](https://astro.build)) that archives every issue of The Six Figure Insider.
 
-- `/` — archive: featured latest issue, search, every issue grouped by year
-- `/issues/<file-name>/` — one page per issue
+Live at **https://thesixfigureslp.com/insider/**.
+
+- `/insider/` — archive: featured latest issue, search, every issue grouped by year
+- `/insider/issues/<file-name>/` — one page per issue
 
 ## How an issue gets published
 
@@ -14,7 +16,7 @@ A small static site (built with [Astro](https://astro.build)) that archives ever
 
 ## Issue file format
 
-The file name becomes the URL: `content/issues/2026-10-28-i-gotta-get-this-off-my-chest.md` → `/issues/2026-10-28-i-gotta-get-this-off-my-chest/`.
+The file name becomes the URL: `content/issues/2026-10-28-i-gotta-get-this-off-my-chest.md` → `/insider/issues/2026-10-28-i-gotta-get-this-off-my-chest/`.
 
 ```md
 ---
@@ -39,11 +41,20 @@ Optional extra fields: `number: "07"` and `readTime: 5` override the automatic i
 
 ## Hostinger setup (one time)
 
-1. In Hostinger hPanel, add the domain or subdomain the site should live on.
-2. Under **Files > FTP Accounts**, note the FTP host, username and password, and the folder the site is served from (usually `public_html`).
-3. In GitHub, open this repository's **Settings > Secrets and variables > Actions** and add three repository secrets: `FTP_SERVER`, `FTP_USERNAME`, `FTP_PASSWORD`.
-4. If the site's folder is not `public_html/` (for example a subdomain folder), add a repository **variable** `FTP_SERVER_DIR` with that folder, ending in `/`.
-5. Run the **Deploy to Hostinger** workflow from the Actions tab (or push to `main`).
+The site is uploaded over SSH to `domains/thesixfigureslp.com/public_html/insider` on Hostinger, so it shows at **https://thesixfigureslp.com/insider/**. Only that folder is touched; the rest of the website stays as it is.
+
+1. **Turn on SSH:** in hPanel, open **Advanced > SSH Access** and enable it. Note the IP address, port (usually `65002`) and username (like `u123456789`).
+2. **Make a deploy key** on your computer (Terminal on a Mac):
+   `ssh-keygen -t ed25519 -C "insider-deploy" -f ~/insider_deploy -N ""`
+   This makes two files: `~/insider_deploy` (private) and `~/insider_deploy.pub` (public).
+3. **Give Hostinger the public key:** on the same SSH Access page, add an SSH key and paste the contents of `insider_deploy.pub`.
+4. **Give GitHub the private key and login:** in this repository open **Settings > Secrets and variables > Actions** and add three repository secrets:
+   - `SSH_HOST`: the IP address from step 1
+   - `SSH_USERNAME`: the username from step 1
+   - `SSH_PRIVATE_KEY`: the full contents of `insider_deploy` (including the BEGIN and END lines)
+5. Run **Deploy to Hostinger** from the Actions tab (or push to `main`).
+
+Optional repository **variables** (same page, Variables tab): `SSH_PORT` if it isn't `65002`, and `SSH_TARGET_DIR` if the domain's folder is somewhere else. The workflow refuses a folder that isn't inside `public_html`, so it can never overwrite the main website.
 
 Until the secrets are set, the workflow still builds the site but skips the upload and shows a warning.
 
@@ -53,7 +64,7 @@ Needs Node 22.12+.
 
 ```sh
 npm install
-npm run dev      # http://localhost:4321
+npm run dev      # http://localhost:4321/insider/
 npm run build    # static site in dist/
 ```
 

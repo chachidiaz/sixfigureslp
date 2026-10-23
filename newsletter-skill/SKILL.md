@@ -45,7 +45,7 @@ Chachi sends a transcribed voice memo (a stream-of-consciousness rant). Turn it 
 ## Audience
 Speech-language pathologists who are building income beyond 1:1 therapy: pre-launch dreamers, stuck practice owners, online builders, and overwhelmed learners. They're skeptical of hype and "get rich quick" language, so stay honest, realistic, and encouraging.
 ## Publishing to the Insider website
-Every approved issue is archived on the Insider website. Publishing means saving one Markdown file to GitHub; the site rebuilds and goes live on its own a few minutes later.
+Every approved issue is archived on the Insider website at https://thesixfigureslp.com/insider/. Publishing means saving one Markdown file to GitHub; the site rebuilds and goes live on its own a few minutes later.
 
 - Repository: `chachidiaz/sixfigureslp`
 - Branch: `main`
@@ -74,6 +74,6 @@ Rules for the file:
 - End with the sign-off on two lines, in italics:
   `*Talk soon,*` then a line with `*Emily (and Chachi)*`
 
-To save the file, use a GitHub tool that can create a file in the repository (for example a GitHub connector's "create or update file" action). If there is no tool that can write to GitHub, give Chachi the finished file and its file path so he can add it on github.com (Add file > Create new file). After saving, tell him the issue will be live on the website in a few minutes.
+To save the file, use a GitHub tool that can create a file in the repository (for example a GitHub connector's "create or update file" action). If there is no tool that can write to GitHub, give Chachi the finished file and its file path so he can add it on github.com (Add file > Create new file). After saving, tell him the issue will be live in a few minutes at https://thesixfigureslp.com/insider/issues/<file name without .md>/
 
 To fix a published issue, update the same file. Don't create a new one.

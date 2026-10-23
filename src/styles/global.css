@@ -3,7 +3,7 @@
 /* Bringbold Nineties needs a commercial web license before launch. */
 @font-face {
   font-family: 'Bringbold Nineties';
-  src: url('/fonts/BringboldNineties-Regular.woff2') format('woff2');
+  src: url('../fonts/BringboldNineties-Regular.woff2') format('woff2');
   font-weight: 400;
   font-style: normal;
   font-display: swap;

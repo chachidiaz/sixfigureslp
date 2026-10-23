@@ -1,16 +1,17 @@
 ---
 import Base from '../layouts/Base.astro';
 import ThemeSwitch from '../components/ThemeSwitch.astro';
+import { homeUrl } from '../lib/issues';
 ---
 
 <Base title="Page not found — The Six Figure Insider" description="This page doesn't exist.">
   <header class="site-header">
     <div class="site-header__inner">
-      <a href="/" class="back-link site-header__start">
+      <a href={homeUrl} class="back-link site-header__start">
         <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 3L5 8l5 5"></path></svg>
         Archive
       </a>
-      <a href="/" class="wordmark">The Insider</a>
+      <a href={homeUrl} class="wordmark">The Insider</a>
       <ThemeSwitch />
     </div>
   </header>
@@ -20,7 +21,7 @@ import ThemeSwitch from '../components/ThemeSwitch.astro';
       <h1>We couldn’t find that page.</h1>
       <p class="story-header__summary">It may have moved. Every issue is listed in the archive.</p>
     </header>
-    <a href="/" class="btn-primary">
+    <a href={homeUrl} class="btn-primary">
       See all issues
       <span class="btn-primary__disc">
         <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"></path></svg>

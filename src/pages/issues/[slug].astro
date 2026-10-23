@@ -2,7 +2,7 @@
 import { render } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import ThemeSwitch from '../../components/ThemeSwitch.astro';
-import { getIssues, issueUrl, longDate, shortDate, isoDate, readLabel, type Issue } from '../../lib/issues';
+import { getIssues, homeUrl, issueUrl, longDate, shortDate, isoDate, readLabel, type Issue } from '../../lib/issues';
 
 export async function getStaticPaths() {
   const issues = await getIssues();
@@ -33,11 +33,11 @@ const { number, readTime } = issue;
 <Base title={`Issue ${number}: ${title} — The Six Figure Insider`} description={summary}>
   <header class="site-header">
     <div class="site-header__inner">
-      <a href="/" class="back-link site-header__start">
+      <a href={homeUrl} class="back-link site-header__start">
         <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 3L5 8l5 5"></path></svg>
         Archive
       </a>
-      <a href="/" class="wordmark">The Insider</a>
+      <a href={homeUrl} class="wordmark">The Insider</a>
       <ThemeSwitch />
     </div>
   </header>
@@ -72,7 +72,7 @@ const { number, readTime } = issue;
             </a>
           )
         }
-        <a href="/" class="all-issues">
+        <a href={homeUrl} class="all-issues">
           See all issues
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3l5 5-5 5"></path></svg>
         </a>

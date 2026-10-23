@@ -24,7 +24,10 @@ export async function getIssues(): Promise<Issue[]> {
   return issues.reverse();
 }
 
-export const issueUrl = (issue: Issue) => `/issues/${issue.id}/`;
+/** Home of the archive, e.g. /insider/ */
+export const homeUrl = import.meta.env.BASE_URL.replace(/\/?$/, '/');
+
+export const issueUrl = (issue: Issue) => `${homeUrl}issues/${issue.id}/`;
 
 // Dates are written without a time, so they parse as UTC midnight. Format in UTC
 // so the day never shifts with the build machine's time zone.
