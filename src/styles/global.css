@@ -1249,3 +1249,63 @@ button:focus-visible {
   line-height: 1.6;
   color: var(--muted);
 }
+
+/* Copy-and-paste prompts (```text blocks in Markdown) */
+.prose pre {
+  padding: 20px 22px;
+  background: var(--soft) !important;
+  color: var(--ink) !important;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  font-family: var(--mono);
+  font-size: 14px;
+  line-height: 1.6;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.prose pre code,
+.prose pre span {
+  color: inherit !important;
+  background: none !important;
+}
+
+.prose :not(pre) > code {
+  padding: 1px 6px;
+  background: var(--soft);
+  border-radius: 6px;
+  font-family: var(--mono);
+  font-size: 0.875em;
+}
+
+.prose h3 {
+  font-family: var(--serif);
+}
+
+/* A longer, multi-paragraph quote reads as an example, not a pull quote */
+.prose blockquote:has(> p + p) {
+  font-size: 18px;
+  line-height: 1.55;
+  font-weight: 400;
+  letter-spacing: 0;
+}
+
+.prose blockquote:has(> p + p)::before {
+  height: 22px;
+  font-size: 48px;
+}
+
+.prose blockquote:has(> p + p) p + p {
+  margin-top: 12px;
+}
+
+@media (max-width: 719px) {
+  .prose pre {
+    padding: 16px;
+    border-radius: 14px;
+    font-size: 13px;
+  }
+  .prose blockquote:has(> p + p) {
+    font-size: 17px;
+  }
+}
