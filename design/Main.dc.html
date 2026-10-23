@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Six Figure Insider — Archive</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&amp;display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&amp;display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,400;12..96,500;12..96,600&amp;display=swap">
+<style>
+@font-face{font-family:"Bringbold Upright";src:url("/_blob/f020ffae5416fffd6650039b5f771eec") format("woff2");font-weight:400;font-style:normal;font-display:swap}
+body{margin:0;background:#e9e1d8;overflow-x:hidden}
+[data-theme="light"]{--paper:#faf6ef;--ink:#24101a;--muted:#6b4f58;--line:#e6d7cb;--accent-text:#c93a00}
+[data-theme="dark"]{--paper:#1c1216;--ink:#f6efe6;--muted:#c9b4bc;--line:#3d2c33;--accent-text:#ff8a4f}
+[data-theme]{transition:background-color .3s ease,color .3s ease}@keyframes page-turn-in{0%{transform:perspective(2600px) rotateY(-88deg);filter:brightness(0.75)}55%{filter:brightness(0.95)}100%{transform:perspective(2600px) rotateY(0deg);filter:brightness(1)}}
+@keyframes page-turn-shade{0%{opacity:1}100%{opacity:0}}
+.page-turn{position:relative;transform-origin:0 50%;backface-visibility:hidden;animation:page-turn-in 0.9s cubic-bezier(.22,.75,.25,1) both}
+.page-turn::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,rgba(36,16,26,0) 0%,rgba(36,16,26,0.05) 60%,rgba(36,16,26,0.28) 100%);animation:page-turn-shade 0.9s ease-out both}
+@media (prefers-reduced-motion: reduce){.page-turn,.page-turn::after{animation:none}.page-turn::after{opacity:0}}
+a{color:var(--ink)}a:hover{color:var(--accent-text)}
+a:focus-visible,input:focus-visible,button:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
+.tg{position:relative;flex:0 0 auto;width:60px;height:32px;padding:0;border:1px solid var(--muted);border-radius:999px;background:transparent;color:var(--muted);cursor:pointer}
+.tg-knob{position:absolute;top:3px;left:3px;width:24px;height:24px;border-radius:999px;background:var(--ink);transition:transform .25s ease}
+.tg-on .tg-knob{transform:translateX(28px)}
+.tg svg{position:absolute;top:9px;width:12px;height:12px;transition:color .25s ease}
+.tg .i-sun{left:9px;color:var(--paper)}
+.tg .i-moon{left:37px}
+.tg-on .i-sun{color:var(--muted)}
+.tg-on .i-moon{color:var(--paper)}
+@media (prefers-reduced-motion: reduce){.tg-knob,.tg svg{transition:none}}
+.page-turn h1,.page-turn h2,.page-turn h3,.page-turn blockquote,.page-turn [style*="font-style: italic"]{font-family:var(--serif)}
+@keyframes tw-blink{0%,49%{opacity:1}50%,100%{opacity:0}}
+.tw-caret{display:inline-block;width:0.08em;height:0.82em;margin-left:0.06em;background:#ff4d03;vertical-align:-0.06em;animation:tw-blink 1s steps(1) infinite}
+@media (prefers-reduced-motion: reduce){.tw-caret{animation:none}}
+</style>
+</helmet>
+<div class="page-turn" data-theme="{{theme}}" style="--serif: {{serif}}; background: var(--paper); color: var(--ink); font-family: 'Bricolage Grotesque', system-ui, sans-serif; font-synthesis: none; font-weight: 300; letter-spacing: 0; min-height: 100vh">
+
+<header style="border-bottom: 1px solid var(--line)">
+<div style="max-width: 1120px; margin: 0 auto; padding: 10px 24px; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center">
+<span style="justify-self: start; font-size: 15px; font-weight: 400; color: var(--muted)">{{totalLabel}}</span>
+<a href="Main.dc.html" aria-current="page" style="font-family: 'Bringbold Upright', serif; font-style: normal; font-size: 24px; line-height: 1; color: #ff4d03; text-decoration: none">The Insider</a>
+<button type="button" role="switch" aria-checked="{{isDark}}" aria-label="Dark mode" onClick="{{toggleTheme}}" class="tg {{tgClass}}" style="justify-self: end"><span class="tg-knob" aria-hidden="true"></span><svg class="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg><svg class="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"></path></svg></button>
+</div>
+</header>
+
+<main id="about" style="max-width: 1120px; margin: 0 auto; padding: 0 24px">
+
+<section style="padding: 56px 0 48px; display: flex; flex-wrap: wrap; align-items: flex-end; gap: 32px 48px; border-bottom: 1px solid var(--line)">
+<div style="flex: 999 1 520px; min-width: 0">
+<p style="margin: 0 0 10px; font-size: 16px; font-weight: 500; color: var(--accent-text)">Every issue, archived</p>
+<h1 style="margin: 0; font-family: 'Bringbold Upright', serif; font-style: normal; font-size: clamp(2.5rem, 5.5vw, 4.5rem); line-height: 0.95; font-weight: 400; letter-spacing: -1px; min-height: 1.9em" aria-label="Every issue, in one place."><span aria-hidden="true">{{tw1}}<span style="color: #ff4d03">{{tw2}}</span>{{tw3}}<span class="tw-caret"></span></span></h1>
+<p style="margin: 20px 0 0; max-width: 560px; font-family: var(--serif); font-style: italic; font-size: 20px; line-height: 1.45; letter-spacing: 0; color: var(--muted)">Quick marketing lessons for SLPs, from an SLP and a digital marketer who built a business together. Read it fast, use it today.</p>
+</div>
+<div style="flex: 1 1 300px; min-width: 0; display: flex; flex-direction: column; gap: 8px">
+<label for="issue-search" style="font-size: 13px; font-weight: 500">Search the archive</label>
+<input id="issue-search" type="search" placeholder="Topic, title or issue no." value="{{q}}" onChange="{{onSearch}}" style="height: 46px; box-sizing: border-box; padding: 0 2px; border: 0; border-bottom: 2px solid var(--ink); border-radius: 0; background: transparent; color: var(--ink); font-family: 'Bricolage Grotesque', system-ui, sans-serif; font-size: 19px; letter-spacing: 0">
+<p style="margin: 0; font-size: 13px; font-weight: 500; color: var(--muted)">{{countLabel}}</p>
+</div>
+</section>
+
+<sc-if value="{{showLead}}" hint-placeholder-val="{{true}}">
+<section aria-labelledby="lead-title" style="padding: 48px 0; border-bottom: 1px solid var(--line); display: flex; flex-wrap: wrap; gap: 20px 48px">
+<div style="flex: 1 1 200px; display: flex; flex-direction: column; gap: 8px">
+<span style="font-size: 13px; font-weight: 500; color: var(--accent-text)">Latest issue</span>
+<span style="font-family: 'Bringbold Upright', serif; font-style: normal; font-size: 56px; line-height: 1; color: #ff4d03">{{lead.n}}</span>
+<span style="font-size: 13px; font-weight: 500; color: var(--muted)">{{lead.date}}</span>
+</div>
+<div style="flex: 999 1 560px; min-width: 0; display: flex; flex-direction: column; gap: 16px">
+<h2 id="lead-title" style="margin: 0; font-family: var(--serif); font-size: clamp(1.875rem, 3.5vw, 2.75rem); line-height: 1.08; font-weight: 500; letter-spacing: -0.02em"><a href="Issue.dc.html" style="text-decoration: none">{{lead.title}}</a></h2>
+<p style="margin: 0; max-width: 640px; font-family: 'Bricolage Grotesque', system-ui, sans-serif; font-size: 16px; line-height: 1.6; letter-spacing: 0; color: var(--muted)">{{lead.summary}}</p>
+<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 12px 24px; margin-top: 8px">
+<a href="Issue.dc.html" style="display: inline-flex; align-items: center; gap: 8px; min-height: 44px; box-sizing: border-box; padding: 5px 5px 5px 18px; background: #ff4d03; color: var(--paper); border-radius: 999px; font-size: 15px; font-weight: 500; text-decoration: none">Read the Issue<span style="display: inline-flex; align-items: center; justify-content: center; width: 30px; height: 30px; border-radius: 999px; background: var(--paper); color: var(--ink)"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"></path></svg></span></a>
+<span style="font-size: 13px; font-weight: 500; color: var(--muted)">{{lead.read}}</span>
+</div>
+</div>
+</section>
+</sc-if>
+
+<section aria-label="All issues" style="padding-top: 48px; display: flex; flex-direction: column; gap: 44px">
+<sc-for list="{{groups}}" as="group" hint-placeholder-count="2">
+<div style="display: flex; flex-direction: column">
+<div style="display: flex; align-items: baseline; gap: 16px; padding-bottom: 12px; border-bottom: 3px solid var(--ink)">
+<h2 style="margin: 0; font-family: 'Bringbold Upright', serif; font-style: normal; font-size: 34px; line-height: 1; font-weight: 400">{{group.year}}</h2>
+<span style="margin-left: auto; font-size: 13px; font-weight: 500; color: var(--muted)">{{group.label}}</span>
+</div>
+<ol style="list-style: none; margin: 0; padding: 0">
+<sc-for list="{{group.issues}}" as="issue" hint-placeholder-count="4">
+<li style="border-bottom: 1px solid var(--line); padding: 24px 0; display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 32px">
+<span style="flex: 0 0 64px; font-family: 'Bringbold Upright', serif; font-style: normal; font-size: 30px; line-height: 1; color: #ff4d03">{{issue.n}}</span>
+<div style="flex: 1 1 420px; min-width: 0; display: flex; flex-direction: column; gap: 8px">
+<h3 style="margin: 0; font-family: var(--serif); font-size: 24px; line-height: 1.2; font-weight: 500; letter-spacing: -0.015em"><a href="Issue.dc.html" style="text-decoration: none">{{issue.title}}</a></h3>
+<p style="margin: 0; font-family: 'Bricolage Grotesque', system-ui, sans-serif; font-size: 16px; line-height: 1.6; letter-spacing: 0; color: var(--muted)">{{issue.summary}}</p>
+</div>
+<div style="flex: 0 0 150px; display: flex; flex-direction: column; gap: 4px; font-size: 13px; font-weight: 500; color: var(--muted)">
+<span>{{issue.date}}</span>
+<span>{{issue.read}}</span>
+</div>
+</li>
+</sc-for>
+</ol>
+</div>
+</sc-for>
+<sc-if value="{{empty}}" hint-placeholder-val="{{false}}">
+<div style="border-top: 3px solid var(--ink); padding: 48px 0; text-align: center">
+<p style="margin: 0; font-family: var(--serif); font-style: italic; font-size: 26px; line-height: 1.4; letter-spacing: 0">No issues match that search.</p>
+<button type="button" onClick="{{clear}}" style="margin-top: 16px; min-height: 44px; padding: 0 22px; border: 1px solid var(--ink); border-radius: 999px; background: var(--paper); color: var(--ink); font-family: inherit; font-size: 16px; font-weight: 500; cursor: pointer">Clear Search</button>
+</div>
+</sc-if>
+</section>
+</main>
+
+<footer style="padding: 72px 24px 24px">
+<p style="max-width: 1120px; margin: 0 auto; padding-top: 16px; border-top: 3px solid var(--ink); font-size: 13px; font-weight: 500; color: var(--muted)">© 2026 Six Figure Insider</p>
+</footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1280,&quot;height&quot;:2600}}">
+class Component extends DCLogic {
+constructor(props) {
+super(props);
+this.state = { q: '', typed: 0, theme: 'light' };
+}
+componentDidMount() {
+var self = this;
+try { var saved = window.localStorage.getItem('sfi-theme'); if (saved === 'dark' || saved === 'light') { this.setState({ theme: saved }); } } catch (e) {}
+var total = 26;
+var reduce = false;
+try { reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches; } catch (e) {}
+if (reduce) { this.setState({ typed: total }); return; }
+this.twStart = setTimeout(function () {
+self.twTimer = setInterval(function () {
+var n = (self.state.typed || 0) + 1;
+self.setState({ typed: n });
+if (n >= total) { clearInterval(self.twTimer); }
+}, 85);
+}, 400);
+}
+componentWillUnmount() {
+clearTimeout(this.twStart);
+clearInterval(this.twTimer);
+}
+setTheme(v) {
+this.setState({ theme: v });
+try { window.localStorage.setItem('sfi-theme', v); } catch (e) {}
+}
+renderVals() {
+var all = [
+{ n: '08', year: '2026', date: 'October 14, 2026', title: 'Why your practice website isn’t booking calls', summary: 'Three fixes you can make this week, starting with the button nobody can find.', read: '4 min read' },
+{ n: '07', year: '2026', date: 'October 7, 2026', title: 'What to post on Instagram when you hate posting', summary: 'A simple weekly rhythm that keeps you visible without eating your weekends.', read: '6 min read' },
+{ n: '06', year: '2026', date: 'September 30, 2026', title: 'Pricing your evals without apologizing', summary: 'How to set a rate that covers your time, and say it out loud with confidence.', read: '5 min read' },
+{ n: '05', year: '2026', date: 'September 23, 2026', title: 'Email lists 101 for busy SLPs', summary: 'Why your list beats your followers, and the one freebie worth making first.', read: '4 min read' },
+{ n: '04', year: '2026', date: 'September 16, 2026', title: 'Referral partners: who to call and what to say', summary: 'A short script for pediatricians, preschools and OTs that doesn’t feel salesy.', read: '5 min read' },
+{ n: '03', year: '2025', date: 'December 9, 2025', title: 'Your Google Business Profile is your new front door', summary: 'Ten minutes of setup that helps local families find you first.', read: '3 min read' },
+{ n: '02', year: '2025', date: 'November 18, 2025', title: 'Niching down without losing clients', summary: 'Why getting specific makes it easier for the right families to choose you.', read: '5 min read' },
+{ n: '01', year: '2025', date: 'November 4, 2025', title: 'Welcome to the Insider', summary: 'Who we are, why we started this, and what to expect in your inbox.', read: '2 min read' }
+];
+var q = (this.state.q || '').trim().toLowerCase();
+var showLead = !q;
+var pool = showLead ? all.slice(1) : all;
+var list = q ? pool.filter(function (i) { return (i.n + ' ' + i.title + ' ' + i.summary).toLowerCase().indexOf(q) !== -1; }) : pool;
+var years = ['2026', '2025'];
+var groups = years.map(function (y) {
+var items = list.filter(function (i) { return i.year === y; });
+return { year: y, issues: items, label: items.length + (items.length === 1 ? ' issue' : ' issues') };
+}).filter(function (g) { return g.issues.length > 0; });
+var self = this;
+var t = this.state.typed || 0;
+var theme = this.state.theme === 'dark' ? 'dark' : 'light';
+return {
+theme: theme,
+serif: "'Libre Baskerville', Georgia, serif",
+isLight: theme === 'light',
+isDark: theme === 'dark',
+setLight: function () { self.setTheme('light'); },
+setDark: function () { self.setTheme('dark'); },
+toggleTheme: function () { self.setTheme(theme === 'dark' ? 'light' : 'dark'); },
+tgClass: theme === 'dark' ? 'tg-on' : '',
+tw1: 'Every '.slice(0, t),
+tw2: 'issue'.slice(0, Math.max(0, t - 6)),
+tw3: ', in one place.'.slice(0, Math.max(0, t - 11)),
+q: this.state.q,
+lead: all[0],
+showLead: showLead,
+groups: groups,
+empty: q && list.length === 0,
+totalLabel: all.length + ' issues and counting',
+countLabel: q ? (list.length + ' of ' + all.length + ' issues match') : 'Newest first',
+onSearch: function (e) { self.setState({ q: e.target.value }); },
+clear: function () { self.setState({ q: '' }); }
+};
+}
+}
+</script>
+</body>
+</html>

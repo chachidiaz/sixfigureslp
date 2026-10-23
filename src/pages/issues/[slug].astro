@@ -1,0 +1,81 @@
+---
+import { render } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import ThemeSwitch from '../../components/ThemeSwitch.astro';
+import { getIssues, issueUrl, longDate, shortDate, isoDate, readLabel, type Issue } from '../../lib/issues';
+
+export async function getStaticPaths() {
+  const issues = await getIssues();
+  return issues.map((issue, i) => {
+    // Issues are newest first, so the previous issue is the next item. The very first
+    // issue has nothing before it, so it points readers to the one after instead.
+    const previous = issues[i + 1];
+    const related = previous ?? issues[i - 1];
+    return {
+      params: { slug: issue.id },
+      props: { issue, related, relatedLabel: previous ? 'Previous issue' : 'Next issue' },
+    };
+  });
+}
+
+interface Props {
+  issue: Issue;
+  related?: Issue;
+  relatedLabel: string;
+}
+
+const { issue, related, relatedLabel } = Astro.props;
+const { Content } = await render(issue);
+const { number, title, summary, date, readTime, author } = issue.data;
+---
+
+<Base title={`Issue ${number}: ${title} — The Six Figure Insider`} description={summary}>
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a href="/" class="back-link site-header__start">
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 3L5 8l5 5"></path></svg>
+        Archive
+      </a>
+      <a href="/" class="wordmark">The Insider</a>
+      <ThemeSwitch />
+    </div>
+  </header>
+
+  <main class="reading">
+    <article>
+      <header class="story-header">
+        <p class="story-header__number">Issue {number}</p>
+        <h1>{title}</h1>
+        <p class="story-header__summary">{summary}</p>
+        <p class="story-header__byline">
+          {author} · <time datetime={isoDate(date)}><span class="wide-only">{longDate(date)}</span><span class="narrow-only">{shortDate(date)}</span></time> · {readLabel(readTime)}
+        </p>
+      </header>
+      <div class="prose">
+        <Content />
+      </div>
+    </article>
+
+    <section class="keep-reading" aria-labelledby="keep-reading">
+      <h2 id="keep-reading">Keep reading</h2>
+      <div class="keep-reading__row">
+        {
+          related && (
+            <a href={issueUrl(related)} class="next-card">
+              <span class="numeral" aria-hidden="true">{related.data.number}</span>
+              <span class="next-card__text">
+                <span class="next-card__label">{relatedLabel}</span>
+                <span class="next-card__title">{related.data.title}</span>
+              </span>
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3l5 5-5 5"></path></svg>
+            </a>
+          )
+        }
+        <a href="/" class="all-issues">
+          See all issues
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3l5 5-5 5"></path></svg>
+        </a>
+      </div>
+    </section>
+  </main>
+</Base>

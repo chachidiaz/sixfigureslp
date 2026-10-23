@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Six Figure Insider — Issue (mobile)</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&amp;display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&amp;display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,400;12..96,500;12..96,600&amp;display=swap">
+<style>
+@font-face{font-family:"Bringbold Upright";src:url("/_blob/f020ffae5416fffd6650039b5f771eec") format("woff2");font-weight:400;font-style:normal;font-display:swap}
+body{margin:0;background:#e9e1d8;overflow-x:hidden}
+[data-theme="light"]{--paper:#faf6ef;--ink:#24101a;--muted:#6b4f58;--line:#e6d7cb;--soft:#f2ebe1;--accent-text:#c93a00}
+[data-theme="dark"]{--paper:#1c1216;--ink:#f6efe6;--muted:#c9b4bc;--line:#3d2c33;--soft:#261a1f;--accent-text:#ff8a4f}
+[data-theme]{transition:background-color .3s ease,color .3s ease}
+a{color:var(--ink)}a:hover{color:var(--accent-text)}
+a:focus-visible,button:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
+.tg{position:relative;flex:0 0 auto;width:60px;height:32px;padding:0;border:1px solid var(--muted);border-radius:999px;background:transparent;color:var(--muted);cursor:pointer}
+.tg-knob{position:absolute;top:3px;left:3px;width:24px;height:24px;border-radius:999px;background:var(--ink);transition:transform .25s ease}
+.tg-on .tg-knob{transform:translateX(28px)}
+.tg svg{position:absolute;top:9px;width:12px;height:12px;transition:color .25s ease}
+.tg .i-sun{left:9px;color:var(--paper)}
+.tg .i-moon{left:37px}
+.tg-on .i-sun{color:var(--muted)}
+.tg-on .i-moon{color:var(--paper)}
+@media (prefers-reduced-motion: reduce){.tg-knob,.tg svg{transition:none}}
+.page-turn h1,.page-turn h2,.page-turn blockquote,.page-turn [style*="font-style: italic"]{font-family:var(--serif)}
+@keyframes hl-draw{from{background-size:0% 100%}to{background-size:100% 100%}}
+.hl{color:#24101a;padding:0 4px;margin:0 -2px;border-radius:3px;background-image:linear-gradient(100deg,rgba(208,206,93,0.85) 0%,#d0ce5d 6%,#d0ce5d 94%,rgba(208,206,93,0.7) 100%);background-repeat:no-repeat;background-position:0 60%;background-size:0% 100%;-webkit-box-decoration-break:clone;box-decoration-break:clone;animation:hl-draw 1s cubic-bezier(.6,.1,.3,1) 0.8s forwards}
+@supports (animation-timeline: view()){.hl{animation:hl-draw linear both;animation-timeline:view();animation-range:entry 30% cover 45%}}
+@keyframes page-turn-in{0%{transform:perspective(1600px) rotateY(-88deg);filter:brightness(0.75)}55%{filter:brightness(0.95)}100%{transform:perspective(1600px) rotateY(0deg);filter:brightness(1)}}
+@keyframes page-turn-shade{0%{opacity:1}100%{opacity:0}}
+.page-turn{position:relative;transform-origin:0 50%;backface-visibility:hidden;animation:page-turn-in 0.8s cubic-bezier(.22,.75,.25,1) both}
+.page-turn::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,rgba(36,16,26,0) 0%,rgba(36,16,26,0.05) 60%,rgba(36,16,26,0.28) 100%);animation:page-turn-shade 0.8s ease-out both}
+@media (prefers-reduced-motion: reduce){.hl{animation:none;background-size:100% 100%}.page-turn,.page-turn::after{animation:none}.page-turn::after{opacity:0}}
+</style>
+</helmet>
+<div class="page-turn" data-theme="{{theme}}" style="--serif: {{serif}}; width: 390px; min-height: 100vh; box-sizing: border-box; background: var(--paper); color: var(--ink); font-family: 'Bricolage Grotesque', system-ui, sans-serif; font-synthesis: none; font-weight: 300; letter-spacing: 0">
+
+<header style="display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; padding: 8px 12px; border-bottom: 1px solid var(--line)">
+<a href="Mobile-Archive.dc.html" style="justify-self: start; display: inline-flex; align-items: center; gap: 6px; min-height: 44px; padding: 0 8px; font-size: 14px; font-weight: 400; text-decoration: none"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 3L5 8l5 5"></path></svg>Archive</a>
+<a href="Mobile-Archive.dc.html" style="font-family: 'Bringbold Upright', serif; font-style: normal; font-size: 19px; line-height: 1; color: #ff4d03; text-decoration: none">The Insider</a>
+<button type="button" role="switch" aria-checked="{{isDark}}" aria-label="Dark mode" onClick="{{toggleTheme}}" class="tg {{tgClass}}" style="justify-self: end"><span class="tg-knob" aria-hidden="true"></span><svg class="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg><svg class="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"></path></svg></button>
+</header>
+
+<main style="padding: 0 24px">
+<article>
+<header style="padding: 40px 0 28px">
+<p style="margin: 0; font-family: 'IBM Plex Mono', ui-monospace, monospace; font-size: 11px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.06em; color: var(--accent-text)">Issue 08</p>
+<h1 style="margin: 12px 0 0; font-size: 32px; line-height: 1.12; font-weight: 500; letter-spacing: -0.02em">Why your practice website isn’t booking calls</h1>
+<p style="margin: 14px 0 0; font-style: italic; font-size: 18px; line-height: 1.45; color: var(--muted)">Three fixes you can make this week, starting with the button nobody can find.</p>
+<p style="margin: 20px 0 0; font-size: 13px; font-weight: 400; color: var(--muted)">The Insider team · Oct 14, 2026 · 4 min read</p>
+</header>
+
+<div style="display: flex; flex-direction: column; gap: 16px; font-size: 16px; line-height: 1.7">
+<p style="margin: 0">You spent a weekend building your website. You picked the colors, wrote the About page, and uploaded the nice headshot. And yet the phone isn’t ringing.</p>
+<p style="margin: 0">Here’s the thing: most parents land on your site from their phone, in the car line, with about thirty seconds to decide. If they can’t tell what you do and how to reach you in that window, they move on to the next name on the list.</p>
+<h2 style="margin: 20px 0 0; font-size: 22px; line-height: 1.25; font-weight: 500; letter-spacing: -0.01em">Fix 1: Put the button where eyes land</h2>
+<p style="margin: 0">Your “Book a Call” button should be the first thing someone sees, not something they scroll to find. Put it at the top of the page, then repeat it after every section. One clear action, everywhere.</p>
+<figure style="margin: 16px 0; padding: 24px 22px; background: var(--soft); border-radius: 16px; display: flex; flex-direction: column; gap: 12px">
+<span aria-hidden="true" style="font-family: 'Bringbold Upright', serif; font-style: normal; font-size: 44px; line-height: 0.6; height: 20px; color: #ff4d03">“</span>
+<blockquote style="margin: 0; font-style: italic; font-size: 21px; line-height: 1.35; font-weight: 500; letter-spacing: -0.01em">Parents decide in thirty seconds, from the car line. Your website has one job: make the next step obvious.</blockquote>
+</figure>
+<h2 style="margin: 20px 0 0; font-size: 22px; line-height: 1.25; font-weight: 500; letter-spacing: -0.01em">Fix 2: Say who you help in one line</h2>
+<p style="margin: 0">“Pediatric speech therapy” is a category. “<span class="hl">Helping late talkers in Austin find their words</span>” is a promise. The more specific your headline, the faster the right family knows they’re in the right place.</p>
+<h2 style="margin: 20px 0 0; font-size: 22px; line-height: 1.25; font-weight: 500; letter-spacing: -0.01em">Fix 3: Answer the money question</h2>
+<p style="margin: 0">Parents want to know if you take insurance and roughly what it costs before they ever pick up the phone. A short FAQ saves you a dozen awkward calls and brings in families who are ready to start.</p>
+<h2 style="margin: 20px 0 0; font-size: 22px; line-height: 1.25; font-weight: 500; letter-spacing: -0.01em">Your to-do list this week</h2>
+<ol style="margin: 0; padding-left: 22px; display: flex; flex-direction: column; gap: 8px">
+<li>Move your booking button above the fold.</li>
+<li>Rewrite your headline to name who you help and where.</li>
+<li>Add three FAQs: insurance, pricing, and what the first visit looks like.</li>
+</ol>
+<p style="margin: 0">That’s it. Three small changes, one afternoon. Hit reply and tell us which one you tackled first — we read every response.</p>
+<p style="margin: 0; font-style: italic">— The Insider team</p>
+</div>
+</article>
+
+<section aria-labelledby="keep-reading" style="margin-top: 48px; padding-top: 28px; border-top: 1px solid var(--line); display: flex; flex-direction: column; gap: 12px">
+<h2 id="keep-reading" style="margin: 0 0 4px; font-size: 18px; line-height: 1.3; font-weight: 500">Keep reading</h2>
+<a href="Mobile-Issue.dc.html" style="display: flex; align-items: center; gap: 14px; padding: 16px; background: var(--soft); border-radius: 14px; text-decoration: none">
+<span style="flex: 0 0 auto; font-family: 'Bringbold Upright', serif; font-style: normal; font-size: 26px; line-height: 1; color: #ff4d03">07</span>
+<span style="flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; gap: 3px">
+<span style="font-size: 12px; font-weight: 400; color: var(--muted)">Previous issue</span>
+<span style="font-size: 16px; line-height: 1.3; font-weight: 500">What to post on Instagram when you hate posting</span>
+</span>
+<svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: 0 0 auto"><path d="M6 3l5 5-5 5"></path></svg>
+</a>
+<a href="Mobile-Archive.dc.html" style="display: flex; align-items: center; justify-content: space-between; gap: 14px; min-height: 52px; box-sizing: border-box; padding: 0 16px; border: 1px solid var(--line); border-radius: 14px; font-size: 15px; font-weight: 500; text-decoration: none">See all issues<svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3l5 5-5 5"></path></svg></a>
+</section>
+</main>
+
+<footer style="padding: 40px 24px 32px; text-align: center">
+<p style="margin: 0; font-size: 12px; font-weight: 400; color: var(--muted)">© 2026 Six Figure Insider</p>
+</footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":3100}}'>
+class Component extends DCLogic {
+constructor(props) {
+super(props);
+this.state = { theme: 'light' };
+}
+componentDidMount() {
+try { var saved = window.localStorage.getItem('sfi-theme'); if (saved === 'dark' || saved === 'light') { this.setState({ theme: saved }); } } catch (e) {}
+}
+setTheme(v) {
+this.setState({ theme: v });
+try { window.localStorage.setItem('sfi-theme', v); } catch (e) {}
+}
+renderVals() {
+var self = this;
+var theme = this.state.theme === 'dark' ? 'dark' : 'light';
+return {
+theme: theme,
+serif: "'Libre Baskerville', Georgia, serif",
+isLight: theme === 'light',
+isDark: theme === 'dark',
+setLight: function () { self.setTheme('light'); },
+setDark: function () { self.setTheme('dark'); },
+toggleTheme: function () { self.setTheme(theme === 'dark' ? 'light' : 'dark'); },
+tgClass: theme === 'dark' ? 'tg-on' : ''
+};
+}
+}
+</script>
+</body>
+</html>
