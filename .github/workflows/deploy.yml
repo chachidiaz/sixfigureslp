@@ -54,8 +54,16 @@ jobs:
           mkdir -p ~/.ssh
           printf '%s\n' "$SSH_PRIVATE_KEY" | tr -d '\r' > ~/.ssh/deploy_key
           chmod 600 ~/.ssh/deploy_key
-          if ! ssh-keygen -y -f ~/.ssh/deploy_key > /dev/null 2>&1; then
-            if grep -q '^ssh-' ~/.ssh/deploy_key; then
+          if ! ssh-keygen -y -P '' -f ~/.ssh/deploy_key > /dev/null 2> ~/keycheck.txt; then
+            # Describe the key's shape without printing any of it.
+            echo "Key check: $(wc -l < ~/.ssh/deploy_key) lines;" \
+              "starts with BEGIN line: $(head -1 ~/.ssh/deploy_key | grep -q '^-----BEGIN' && echo yes || echo no);" \
+              "ends with END line: $(grep -v '^$' ~/.ssh/deploy_key | tail -1 | grep -q '^-----END' && echo yes || echo no);" \
+              "PuTTY format: $(grep -q '^PuTTY-User-Key-File' ~/.ssh/deploy_key && echo yes || echo no)"
+            echo "ssh-keygen said: $(cat ~/keycheck.txt)"
+            if grep -qi 'passphrase' ~/keycheck.txt; then
+              echo "::error::This key is protected by a password. Make a new key with an empty password (-N \"\") and update both Hostinger and SSH_PRIVATE_KEY."
+            elif grep -q '^ssh-' ~/.ssh/deploy_key; then
               echo "::error::SSH_PRIVATE_KEY holds the public key (insider_deploy.pub). Paste the private key file (insider_deploy) instead."
             else
               echo "::error::SSH_PRIVATE_KEY isn't a readable private key. Paste the whole insider_deploy file, from the -----BEGIN line to the -----END line."
