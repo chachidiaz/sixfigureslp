@@ -17,6 +17,8 @@ Live at **https://thesixfigureslp.com/insider/**.
 
 Callout and graphic templates: `publishing-partner-skill/references/components.md`.
 
+The deploy also makes an **email GIF** for each new or changed issue: the issue scrolling inside a phone, at `https://thesixfigureslp.com/insider/email/<issue>.gif`. The scripts and phone frame are in `email-gif/`. Running the workflow by hand from the Actions tab remakes every GIF.
+
 ## Issue file format
 
 The file name becomes the URL: `content/issues/2026-10-28-i-gotta-get-this-off-my-chest.md` → `/insider/issues/2026-10-28-i-gotta-get-this-off-my-chest/`.

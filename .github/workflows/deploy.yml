@@ -23,6 +23,9 @@ jobs:
       TARGET_DIR: ${{ vars.SSH_TARGET_DIR || 'domains/thesixfigureslp.com/public_html/insider' }}
     steps:
       - uses: actions/checkout@v4
+        with:
+          # Full history, so we can see which issues this push added or changed.
+          fetch-depth: 0
 
       - uses: actions/setup-node@v4
         with:
@@ -32,6 +35,29 @@ jobs:
       - run: npm ci
 
       - run: npm run build
+
+      # Email GIF: each issue scrolling inside a phone, served at /insider/email/<issue>.gif.
+      # Made for issues this push added or changed (all issues on a manual run).
+      # If this fails, the site still deploys.
+      - name: Make email GIFs
+        continue-on-error: true
+        env:
+          BEFORE: ${{ github.event.before }}
+          EVENT: ${{ github.event_name }}
+        run: |
+          if [ "$EVENT" = push ] && git cat-file -e "$BEFORE^{commit}" 2>/dev/null; then
+            slugs=$(git diff --no-renames --name-only --diff-filter=AM "$BEFORE" HEAD -- content/issues | grep '\.md$' | xargs -r -n1 basename | sed 's/\.md$//')
+          else
+            slugs=$(ls content/issues | grep '\.md$' | sed 's/\.md$//')
+          fi
+          if [ -z "$slugs" ]; then echo "No new or changed issues."; exit 0; fi
+          echo "Making GIFs for: $slugs"
+          npx playwright install --with-deps chromium
+          python3 -m pip install --quiet pillow
+          npx astro preview --port 4321 > /tmp/preview.log 2>&1 &
+          for i in $(seq 30); do curl -sf http://localhost:4321/insider/ > /dev/null && break; sleep 1; done
+          node email-gif/capture.mjs http://localhost:4321/insider /tmp/captures $slugs
+          python3 email-gif/make_gif.py /tmp/captures dist/email $slugs
 
       - name: Check Hostinger SSH details are set
         id: ssh
@@ -74,5 +100,10 @@ jobs:
           SSH="ssh -i $HOME/.ssh/deploy_key -p $SSH_PORT"
 
           $SSH "$SSH_USERNAME@$SSH_HOST" "mkdir -p '${TARGET_DIR%/}'"
-          rsync -rlz --delete --exclude='.well-known' -e "$SSH" dist/ "$SSH_USERNAME@$SSH_HOST:${TARGET_DIR%/}/"
+          # GIFs are only made for new or changed issues, so never delete old ones.
+          rsync -rlz --delete --exclude='.well-known' --exclude='email/' -e "$SSH" dist/ "$SSH_USERNAME@$SSH_HOST:${TARGET_DIR%/}/"
+          if [ -d dist/email ]; then
+            $SSH "$SSH_USERNAME@$SSH_HOST" "mkdir -p '${TARGET_DIR%/}/email'"
+            rsync -rlz -e "$SSH" dist/email/ "$SSH_USERNAME@$SSH_HOST:${TARGET_DIR%/}/email/"
+          fi
           echo "Uploaded to https://thesixfigureslp.com/insider/"
