@@ -11,8 +11,11 @@ Live at **https://thesixfigureslp.com/insider/**.
 
 1. Dictate a voice memo and paste the transcript into Claude.
 2. The newsletter skill (`newsletter-skill/SKILL.md`) writes the issue and offers subject lines.
-3. Once you approve it, the skill saves it as a Markdown file in `content/issues/` on the `main` branch.
-4. GitHub Actions (`.github/workflows/deploy.yml`) rebuilds the site and uploads it to Hostinger. It's live a few minutes later.
+3. The publishing-partner skill (`publishing-partner-skill/`) edits it, adds highlights, callouts and graphics, and shows you the result.
+4. Once you approve, it saves the issue as a Markdown file in `content/issues/` on the `main` branch.
+5. GitHub Actions (`.github/workflows/deploy.yml`) rebuilds the site and uploads it to Hostinger. It's live a few minutes later.
+
+Callout and graphic templates: `publishing-partner-skill/references/components.md`.
 
 ## Issue file format
 

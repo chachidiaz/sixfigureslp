@@ -1,6 +1,6 @@
 ---
 name: "newsletter-creation-skill"
-description: "Generates Six Figure Insider Newsletter from voice memo dictation and publishes approved issues to the Insider website"
+description: "Generates Six Figure Insider Newsletter from voice memo dictation, then hands the approved draft to the insider-publishing-partner skill for editing, graphics and publishing"
 ---
 
 # Six Figure Insider Newsletter
@@ -40,40 +40,17 @@ Chachi sends a transcribed voice memo (a stream-of-consciousness rant). Turn it 
 2. Keep his actual wording wherever possible. Clean up filler and false starts, but keep the rhythm and the repeats.
 3. Draft the newsletter in the format above.
 4. Offer subject line options and ask if anything should change.
-5. When he approves the draft and picks a subject line, publish it to the Insider website (see below). Never publish before he says it's approved.
+5. When he approves the draft and picks a subject line, hand it to the Insider Publishing Partner (see below).
 
 ## Audience
 Speech-language pathologists who are building income beyond 1:1 therapy: pre-launch dreamers, stuck practice owners, online builders, and overwhelmed learners. They're skeptical of hype and "get rich quick" language, so stay honest, realistic, and encouraging.
-## Publishing to the Insider website
-Every approved issue is archived on the Insider website at https://thesixfigureslp.com/insider/. Publishing means saving one Markdown file to GitHub; the site rebuilds and goes live on its own a few minutes later.
 
-- Repository: `chachidiaz/sixfigureslp`
-- Branch: `main`
-- File path: `content/issues/YYYY-MM-DD-short-slug.md` (today's date, then 3 to 6 lowercase words from the subject line joined by hyphens, e.g. `content/issues/2026-10-28-i-gotta-get-this-off-my-chest.md`)
-- Commit message: `Publish issue: <subject line>`
+## Handing off to the Insider website
+This skill writes the newsletter; it never publishes anything itself. Once Chachi approves the draft and picks a subject line, use the **insider-publishing-partner** skill. It edits the issue, adds highlights, callouts and graphics, shows Chachi the result, and publishes it to https://thesixfigureslp.com/insider/ only after he approves.
 
-File format:
+Pass it:
+- The subject line he picked (it becomes the title)
+- The publish date
+- The full newsletter text, including the sign-off
 
-```md
----
-title: "<the subject line he picked>"
-summary: "<one sentence, under 140 characters, in his voice, saying what the issue is about>"
-date: YYYY-MM-DD
----
-
-<the newsletter body>
-```
-
-Rules for the file:
-- Only `title`, `summary` and `date` go at the top. The website works out the issue number and read time by itself.
-- Put the title and summary in double quotes. If they contain a double quote, write it as \" or use curly quotes.
-- Leave out the subject line from the body (the website shows it as the headline).
-- Write each bold header as a `## ` heading on its own line, not as **bold** text.
-- Optional: put the single most important line on its own as a pull quote, starting the line with `> `. Use this at most once.
-- Optional: wrap one short key phrase in `<mark>` and `</mark>` to highlight it. Use this at most once.
-- End with the sign-off on two lines, in italics:
-  `*Talk soon,*` then a line with `*Emily (and Chachi)*`
-
-To save the file, use a GitHub tool that can create a file in the repository (for example a GitHub connector's "create or update file" action). If there is no tool that can write to GitHub, give Chachi the finished file and its file path so he can add it on github.com (Add file > Create new file). After saving, tell him the issue will be live in a few minutes at https://thesixfigureslp.com/insider/issues/<file name without .md>/
-
-To fix a published issue, update the same file. Don't create a new one.
+If the insider-publishing-partner skill isn't available, give Chachi the finished newsletter and tell him to run it through that skill before it goes on the website.
