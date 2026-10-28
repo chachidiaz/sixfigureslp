@@ -96,4 +96,4 @@ One `<li>` per step: the big number, a short day/time label, what happens, and a
 
 ## Worked example
 
-`content/issues/2026-10-28-our-most-successful-launch-of-the-year.md` in the repository uses every component above.
+`content/issues/2026-10-28-steal-our-launch-strategy.md` in the repository uses every component above.

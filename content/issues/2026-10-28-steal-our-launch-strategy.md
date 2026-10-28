@@ -1,5 +1,5 @@
 ---
-title: "We just had our most successful launch of the year"
+title: "Steal Our Launch Strategy"
 summary: "Lower price, shorter sale, more revenue. Here’s how we evaluated, planned and ran the AAC Assessment Hub relaunch."
 date: 2026-10-28
 author: "Chachi"
@@ -115,21 +115,28 @@ For this promotion, Emily created a new AAC lead magnet and promoted it three we
 
 The result was a roughly three-week pre-launch runway: <mark>a list full of people who had consumed free, valuable content, were positioned to buy, and were interested specifically in AAC evaluation.</mark>
 
-We sent emails to promote the masterclass and the sale. Here’s the sale week:
+We sent emails to promote the masterclass and the sale. Here’s every email we sent:
 
 <figure class="fig">
-<figcaption class="fig__cap"><span class="fig__kicker">The sale emails</span><span class="fig__title">Eight days, nine emails, one rest day</span></figcaption>
+<figcaption class="fig__cap"><span class="fig__kicker">Every email we sent</span><span class="fig__title">Three weeks, 13 emails</span></figcaption>
 <ol class="timeline">
-<li><span class="timeline__day"><b>1</b>Tue</span><span class="timeline__what">Cart open announcement</span><span class="tag tag--none">Launch</span></li>
-<li><span class="timeline__day"><b>2</b>Wed</span><span class="timeline__what">Resend to unopens only</span><span class="tag tag--none">Launch</span></li>
-<li><span class="timeline__day"><b>3</b>Thu</span><span class="timeline__what">Cohort bonus explanation</span><span class="tag tag--none">Value</span></li>
-<li><span class="timeline__day"><b>4</b>Fri</span><span class="timeline__what">Surprise bonus announcement</span><span class="tag tag--none">Value</span></li>
-<li class="is-rest"><span class="timeline__day"><b>5</b>Sat</span><span class="timeline__what">No email</span><span class="tag tag--none">Rest</span></li>
-<li><span class="timeline__day"><b>6</b>Sun</span><span class="timeline__what">Closes Tuesday</span><span class="tag tag--soft">Soft urgency</span></li>
-<li><span class="timeline__day"><b>7</b>Mon</span><span class="timeline__what">FAQs and objection handling</span><span class="tag tag--soft">Soft urgency</span></li>
-<li><span class="timeline__day"><b>8</b>Tue AM</span><span class="timeline__what">Offer recap</span><span class="tag tag--hard">Hard urgency</span></li>
-<li><span class="timeline__day"><b>8</b>Tue PM</span><span class="timeline__what">Final reminder</span><span class="tag tag--hard">Hard urgency</span></li>
+<li class="timeline__phase">Masterclass promotion</li>
+<li><span class="timeline__day"><b>7</b>Wed</span><span class="timeline__what">Masterclass announcement</span><span class="tag tag--none">Announce</span></li>
+<li><span class="timeline__day"><b>9</b>Fri</span><span class="timeline__what">What they’ll learn + a pain point</span><span class="tag tag--none">Value</span></li>
+<li><span class="timeline__day"><b>12</b>Mon</span><span class="timeline__what">AAC newsletter with the masterclass link</span><span class="tag tag--none">Value</span></li>
+<li><span class="timeline__day"><b>16</b>Fri</span><span class="timeline__what">Masterclass next week, with social proof</span><span class="tag tag--soft">Soft urgency</span></li>
+<li><span class="timeline__day"><b>18</b>Sun</span><span class="timeline__what">Starts tomorrow + FAQs</span><span class="tag tag--soft">Soft urgency</span></li>
+<li><span class="timeline__day"><b>19</b>Mon</span><span class="timeline__what">Last chance + a pain point</span><span class="tag tag--hard">Hard urgency</span></li>
+<li class="timeline__phase">AAC Hub sale</li>
+<li><span class="timeline__day"><b>20</b>Tue</span><span class="timeline__what">Cart open: it’s open!</span><span class="tag tag--none">Launch</span></li>
+<li><span class="timeline__day"><b>22</b>Thu</span><span class="timeline__what">What’s new and what’s inside</span><span class="tag tag--none">Value</span></li>
+<li><span class="timeline__day"><b>23</b>Fri</span><span class="timeline__what">New bonus added</span><span class="tag tag--none">Value</span></li>
+<li><span class="timeline__day"><b>25</b>Sun</span><span class="timeline__what">Story-driven: the virtual sessions</span><span class="tag tag--none">Story</span></li>
+<li><span class="timeline__day"><b>26</b>Mon</span><span class="timeline__what">Closes tomorrow</span><span class="tag tag--soft">Soft urgency</span></li>
+<li><span class="timeline__day"><b>27</b>Tue AM</span><span class="timeline__what">Cart close</span><span class="tag tag--hard">Hard urgency</span></li>
+<li><span class="timeline__day"><b>27</b>Tue PM</span><span class="timeline__what">Cart close</span><span class="tag tag--hard">Hard urgency</span></li>
 </ol>
+<span class="fig__note">October 7–27, 2026</span>
 </figure>
 
 On top of that, Emily uses her Instagram stories strategically to stay top of mind with her audience every day, and plans 3–4 in-feed conversion posts that speak directly to the buyer’s pain points and the transformation.
