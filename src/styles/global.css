@@ -157,69 +157,6 @@ button:focus-visible {
   }
 }
 
-/* ---------- Page turn ---------- */
-
-@keyframes page-turn-in {
-  0% {
-    transform: perspective(2600px) rotateY(-88deg);
-    filter: brightness(0.75);
-  }
-  55% {
-    filter: brightness(0.95);
-  }
-  100% {
-    transform: perspective(2600px) rotateY(0deg);
-    filter: brightness(1);
-  }
-}
-
-@keyframes page-turn-shade {
-  from {
-    opacity: 1;
-  }
-  to {
-    opacity: 0;
-  }
-}
-
-.page-turn {
-  position: relative;
-  transform-origin: 0 50%;
-  backface-visibility: hidden;
-  animation: page-turn-in 0.9s cubic-bezier(0.22, 0.75, 0.25, 1) both;
-}
-
-.page-turn::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  background: linear-gradient(90deg, rgba(36, 16, 26, 0) 0%, rgba(36, 16, 26, 0.05) 60%, rgba(36, 16, 26, 0.28) 100%);
-  animation: page-turn-shade 0.9s ease-out both;
-}
-
-@media (max-width: 719px) {
-  @keyframes page-turn-in-narrow {
-    0% {
-      transform: perspective(1600px) rotateY(-88deg);
-      filter: brightness(0.75);
-    }
-    55% {
-      filter: brightness(0.95);
-    }
-    100% {
-      transform: perspective(1600px) rotateY(0deg);
-      filter: brightness(1);
-    }
-  }
-  .page-turn {
-    animation: page-turn-in-narrow 0.8s cubic-bezier(0.22, 0.75, 0.25, 1) both;
-  }
-  .page-turn::after {
-    animation-duration: 0.8s;
-  }
-}
-
 /* ---------- Header ---------- */
 
 .site-header {
@@ -1215,14 +1152,9 @@ button:focus-visible {
 /* ---------- Reduced motion ---------- */
 
 @media (prefers-reduced-motion: reduce) {
-  .page-turn,
-  .page-turn::after,
   .tw-caret,
   .prose mark {
     animation: none !important;
-  }
-  .page-turn::after {
-    opacity: 0;
   }
   .prose mark {
     background-size: 100% 100%;
